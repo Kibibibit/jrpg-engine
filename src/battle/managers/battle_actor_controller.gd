@@ -1,6 +1,9 @@
 extends Node
 class_name BattleActorController
 
+## TODO: Look into refactoring this class out, or renaming it, as this controls battle flow
+## more than it does actors now
+
 @export var battle_context: BattleContext = null
 @export var signal_bus: BattleSignalBus = null
 

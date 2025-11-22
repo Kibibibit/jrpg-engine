@@ -1,6 +1,8 @@
 extends Node
 class_name BattleTurnOrder
 
+## TODO: Refactor this out into the battle context potentially? Or at the very least store
+## it in the battle context?
 
 @export var battle_context: BattleContext = null
 @export var signal_bus: BattleSignalBus = null
