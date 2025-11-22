@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://q3lwdtbenu6q"]
+
+[ext_resource type="Script" uid="uid://o8iqulvlggil" path="res://src/battle/prefabs/battle_actor/battle_actor.gd" id="1_b41wm"]
+
+[node name="BattleActor" type="Node3D"]
+script = ExtResource("1_b41wm")

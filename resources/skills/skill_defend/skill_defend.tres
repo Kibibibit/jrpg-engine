@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://ccrpmqx65jvdm"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_wv78g"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_hwkic"]
+[ext_resource type="Script" uid="uid://ceyi3djb6nwuh" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_defend.gd" id="2_ogqke"]
+
+[sub_resource type="Resource" id="Resource_l743b"]
+script = ExtResource("2_ogqke")
+metadata/_custom_type_script = "uid://ceyi3djb6nwuh"
+
+[resource]
+script = ExtResource("2_hwkic")
+display_name = "Defend"
+target_scope = 0
+targets_allies = true
+targets_enemies = false
+effects = Array[ExtResource("1_wv78g")]([SubResource("Resource_l743b")])
+instance_scene_id = &"skill/defend/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

@@ -1,0 +1,58 @@
+[gd_scene load_steps=2 format=3 uid="uid://mag2061hs3vw"]
+
+[ext_resource type="Script" uid="uid://d0oq25ugka6g8" path="res://src/battle/ui/player_ui_stack/action_select/battle_ui_stack_action_select.gd" id="1_5l810"]
+
+[node name="BattleUIStackActionSelect" type="Control" node_paths=PackedStringArray("attack_button", "skill_button", "item_button", "defend_button", "pass_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5l810")
+attack_button = NodePath("HBoxContainer/AttackButton")
+skill_button = NodePath("HBoxContainer/SkillButton")
+item_button = NodePath("HBoxContainer/ItemButton")
+defend_button = NodePath("HBoxContainer/DefendButton")
+pass_button = NodePath("HBoxContainer/PassButton")
+metadata/_custom_type_script = "uid://dpj8oaanlmy7b"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.65
+anchor_right = 1.0
+anchor_bottom = 0.748
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="AttackButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Attack"
+
+[node name="SkillButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Skill"
+
+[node name="ItemButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Item"
+
+[node name="DefendButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Defend"
+
+[node name="PassButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Pass"

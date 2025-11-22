@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=7 format=3 uid="uid://cgo3uadolgvf2"]
+
+[ext_resource type="Script" uid="uid://cw4kn8l6ct6x0" path="res://src/common/models/saveable/stats.gd" id="1_kaecd"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_kld6q"]
+[ext_resource type="Resource" uid="uid://68b4t6v51l05" path="res://resources/skills/skill_basic_attack/skill_basic_attack.tres" id="3_xlig6"]
+[ext_resource type="Resource" uid="uid://dlekop3bcjqj6" path="res://resources/skills/skill_multi_hit_test/skill_multi_hit_test.tres" id="4_pjrnw"]
+[ext_resource type="Script" uid="uid://dn2heulpu25el" path="res://src/common/models/saveable/character_template.gd" id="5_hr5ed"]
+
+[sub_resource type="Resource" id="Resource_ijglg"]
+script = ExtResource("1_kaecd")
+max_hp = 100
+max_mp = 100
+strength = 6
+magic = 5
+defense = 4
+speed = 7
+luck = 5
+metadata/_custom_type_script = "uid://cw4kn8l6ct6x0"
+
+[resource]
+script = ExtResource("5_hr5ed")
+display_name = "Test B"
+base_stats = SubResource("Resource_ijglg")
+innate_skills = Array[ExtResource("2_kld6q")]([ExtResource("3_xlig6"), ExtResource("4_pjrnw")])
+elemental_affinities = Dictionary[int, int]({
+3: 1
+})
+skin_scene_uid = "uid://cqom68kop81wb"
+metadata/_custom_type_script = "uid://dn2heulpu25el"

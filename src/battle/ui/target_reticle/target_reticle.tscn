@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx0pih568vhii"]
+
+[ext_resource type="Script" uid="uid://dwje3trpd0ag8" path="res://src/battle/ui/target_reticle/target_reticle.gd" id="1_5414s"]
+
+[node name="TargetReticle" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5414s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 1, 1, 0.7019608)

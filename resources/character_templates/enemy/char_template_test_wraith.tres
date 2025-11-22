@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=5 format=3 uid="uid://u3gp4un2ewuw"]
+
+[ext_resource type="Script" uid="uid://cw4kn8l6ct6x0" path="res://src/common/models/saveable/stats.gd" id="1_o2yn1"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="1_u02ba"]
+[ext_resource type="Script" uid="uid://dn2heulpu25el" path="res://src/common/models/saveable/character_template.gd" id="2_t8w8k"]
+
+[sub_resource type="Resource" id="Resource_a7677"]
+script = ExtResource("1_o2yn1")
+max_hp = 70
+max_mp = 80
+strength = 20
+magic = 65
+defense = 25
+speed = 55
+luck = 40
+metadata/_custom_type_script = "uid://cw4kn8l6ct6x0"
+
+[resource]
+script = ExtResource("2_t8w8k")
+display_name = "Test Wraith"
+base_stats = SubResource("Resource_a7677")
+elemental_affinities = Dictionary[int, int]({
+0: 2,
+1: 3,
+2: 3,
+3: 1,
+4: 4
+})
+skin_scene_id = &"skin/default"
+attack_skill_id = &"skill/basic_attack"
+metadata/_custom_type_script = "uid://dn2heulpu25el"

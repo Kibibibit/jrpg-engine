@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://blfyl1t25ra3f"]
+
+[ext_resource type="Script" uid="uid://dtbr13uauwxef" path="res://src/common/prefabs/actor_skin/actor_skin.gd" id="1_c3d8f"]
+
+[node name="ActorSkin" type="Node3D" node_paths=PackedStringArray("animation_player")]
+script = ExtResource("1_c3d8f")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

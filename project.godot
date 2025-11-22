@@ -1,0 +1,50 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="jrpg-engines"
+run/main_scene="uid://c18vxtnror64b"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalTimers="*res://src/common/autoloads/global_timers.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/glb_importer/plugin.cfg", "res://addons/todo_finder/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://src/battle/core/": "orange",
+"res://src/battle/enums/": "green",
+"res://src/battle/managers/": "teal",
+"res://src/battle/models/": "blue",
+"res://src/battle/prefabs/": "purple",
+"res://src/battle/ui/": "pink",
+"res://src/battle/utils/": "gray",
+"res://src/common/configs/": "red",
+"res://src/common/constants/": "yellow",
+"res://src/common/enums/": "green",
+"res://src/common/models/": "blue",
+"res://src/common/prefabs/": "purple",
+"res://src/common/ui/": "pink",
+"res://src/common/utils/": "gray"
+}
+
+[global_group]
+
+BattleActor=""
+PlayerBattleActor=""
+EnemyBattleActor=""
+SkillInstance=""

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=5 format=3 uid="uid://cnh7qqxoe4dee"]
+
+[ext_resource type="Script" uid="uid://cw4kn8l6ct6x0" path="res://src/common/models/saveable/stats.gd" id="1_qag6f"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="1_us8nl"]
+[ext_resource type="Script" uid="uid://dn2heulpu25el" path="res://src/common/models/saveable/character_template.gd" id="2_1xm4k"]
+
+[sub_resource type="Resource" id="Resource_onocb"]
+script = ExtResource("1_qag6f")
+max_hp = 60
+max_mp = 20
+strength = 35
+magic = 10
+defense = 15
+speed = 50
+luck = 25
+metadata/_custom_type_script = "uid://cw4kn8l6ct6x0"
+
+[resource]
+script = ExtResource("2_1xm4k")
+display_name = "Test Goblin"
+base_stats = SubResource("Resource_onocb")
+elemental_affinities = Dictionary[int, int]({
+0: 1,
+3: 1
+})
+skin_scene_id = &"skin/default"
+attack_skill_id = &"skill/basic_attack"
+metadata/_custom_type_script = "uid://dn2heulpu25el"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://jdcqbwcclpdi"]
+
+[ext_resource type="PackedScene" uid="uid://daa0gjdmfelx2" path="res://src/battle/ui/damage_number/damage_number.tscn" id="1_cbcd5"]
+
+[node name="DamageNumberMiss" instance=ExtResource("1_cbcd5")]
+
+[node name="Label" parent="." index="0"]
+theme_override_colors/font_color = Color(0.61745477, 0.61745477, 0.6174547, 1)
+text = "MISS"

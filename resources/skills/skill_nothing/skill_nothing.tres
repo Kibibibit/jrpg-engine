@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://csstxyr5bvy3i"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_m86qn"]
+[ext_resource type="Script" uid="uid://cib37nv73c8r2" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_nothing.gd" id="2_3l6of"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_xv13b"]
+
+[sub_resource type="Resource" id="Resource_pec2c"]
+script = ExtResource("2_3l6of")
+metadata/_custom_type_script = "uid://cib37nv73c8r2"
+
+[resource]
+script = ExtResource("2_xv13b")
+display_name = "Nothing"
+target_scope = 0
+targets_allies = true
+targets_enemies = false
+effects = Array[ExtResource("1_m86qn")]([SubResource("Resource_pec2c")])
+instance_scene_id = &"skill/nothing/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

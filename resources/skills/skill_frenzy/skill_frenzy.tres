@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://djluqe51vf2ck"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_ihh8w"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_c0tw0"]
+[ext_resource type="Script" uid="uid://bsyukv1vxc68x" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_damage.gd" id="2_h2ebk"]
+
+[sub_resource type="Resource" id="Resource_f8awr"]
+script = ExtResource("2_h2ebk")
+power = 55
+damage_variance = 0.1
+base_stat = 2
+element = 2
+can_crit = true
+crit_chance = 0.1
+accuracy = 0.8
+max_hits = 3
+hit_timing = 0.05
+metadata/_custom_type_script = "uid://bsyukv1vxc68x"
+
+[resource]
+script = ExtResource("2_c0tw0")
+display_name = "Frenzy"
+targets_allies = true
+cast_animation = &"ATTACK"
+effects = Array[ExtResource("1_ihh8w")]([SubResource("Resource_f8awr")])
+instance_scene_id = &"skill/frenzy/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

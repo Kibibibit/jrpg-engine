@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://b07wq2d3menh0"]
+
+[ext_resource type="Script" uid="uid://0nfll2btxyaa" path="res://src/battle/ui/battle_ui.gd" id="1_3wkc1"]
+[ext_resource type="Script" uid="uid://c0n480ij5jug" path="res://src/battle/ui/player_card_parent.gd" id="2_jr22p"]
+[ext_resource type="Script" uid="uid://8t2h5lyms3vo" path="res://src/battle/ui/damage_number_parent.gd" id="2_says2"]
+[ext_resource type="Script" uid="uid://davcdkfj63pk8" path="res://src/battle/ui/player_ui_stack/battle_ui_stack_manager.gd" id="4_ua4yd"]
+[ext_resource type="Script" uid="uid://k1vfjj7sa7qk" path="res://src/battle/ui/player_ui_stack/battle_ui_stack_root.gd" id="5_ua4yd"]
+
+[node name="BattleUI" type="CanvasLayer"]
+script = ExtResource("1_3wkc1")
+
+[node name="PlayerCardParent" type="HBoxContainer" parent="." node_paths=PackedStringArray("parent")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+theme_override_constants/separation = 4
+script = ExtResource("2_jr22p")
+parent = NodePath("..")
+
+[node name="DamageNumberParent" type="Control" parent="." node_paths=PackedStringArray("parent")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_says2")
+parent = NodePath("..")
+
+[node name="UIStackManager" type="Control" parent="." node_paths=PackedStringArray("parent")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_ua4yd")
+parent = NodePath("..")
+metadata/_custom_type_script = "uid://rxvn70aosew1"
+
+[node name="BattleUIStackRoot" type="Control" parent="UIStackManager"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_ua4yd")
+metadata/_custom_type_script = "uid://k1vfjj7sa7qk"

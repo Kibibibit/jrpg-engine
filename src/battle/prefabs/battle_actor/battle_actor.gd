@@ -1,0 +1,87 @@
+extends Node3D
+class_name BattleActor
+
+
+signal entered_battle()
+
+var skin: ActorSkin = null
+var character_state: CharacterState
+var signal_bus: BattleSignalBus
+var battle_context: BattleContext
+
+
+func _ready() -> void:
+	add_to_group(Groups.BATTLE_ACTOR)
+	skin = character_state.get_skin_scene().instantiate()
+	add_child(skin)
+	signal_bus.request_eventful_animation.connect(_on_request_eventful_animation)
+	signal_bus.on_hit.connect(_on_hit)
+	signal_bus.on_heal.connect(_on_heal)
+	signal_bus.on_reflect.connect(_on_reflect)
+	signal_bus.on_death.connect(_on_death)
+	await get_tree().create_timer(0.1).timeout ## TODO: Wait for skin and entry animation to play
+	entered_battle.emit()
+
+
+static func from_state(p_state: CharacterState) -> BattleActor:
+	var actor = BattleActor.new()
+	actor.character_state = p_state
+	return actor
+
+func get_character_id() -> int:
+	return character_state.get_instance_id()
+
+func _on_request_eventful_animation(character: CharacterState, animation_name: StringName) -> void:
+	if character != character_state:
+		return
+	
+
+	await skin.play_eventful_animation(animation_name)
+	signal_bus.on_eventful_animation_event.emit(character)
+
+func _on_death(user: CharacterState) -> void:
+	if user != character_state:
+		return
+	skin.play_dead_animation()
+
+## TODO: Check if user is needed in this function
+func _on_hit(_user: CharacterState, target: CharacterState, hit: Hit) -> void:
+	if target != character_state:
+		return
+	
+	match hit.hit_type:
+		Hit.HitType.MISS:
+			skin.play_dodge_animation()
+		Hit.HitType.BLOCK:
+			pass
+		_:
+			skin.play_hit_animation()
+
+
+func _on_heal(user: CharacterState, target: CharacterState, _amount: int) -> void:
+	if target != character_state:
+		return
+	if user != target:
+		## TODO: Thank user? Some kind of animation
+		pass
+	
+	## TODO: Actually animate the skin here
+	await GlobalTimers.wait(0.1)
+
+func _on_reflect(user: CharacterState, target: CharacterState) -> void:
+	if target != character_state:
+		return
+
+	assert(user != target, "Reflect event where user and target are the same")
+
+	## TODO: Create shield, looking at user
+	await GlobalTimers.wait(0.1)
+
+func get_target_position(target_position_type: TargetPosition.Type) -> Vector3:
+	match target_position_type:
+		TargetPosition.Type.CENTER_OF_MASS:
+			return skin.center_of_mass.global_position
+		TargetPosition.Type.ABOVE_HEAD:
+			return skin.above_head.global_position
+		_:
+			return global_position

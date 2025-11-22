@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsahp2j6wt7wq"]
+
+[ext_resource type="PackedScene" uid="uid://blfyl1t25ra3f" path="res://src/common/prefabs/actor_skin/actor_skin.tscn" id="1_h728r"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_h728r"]
+
+[sub_resource type="Animation" id="Animation_x5yyu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.057711, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h728r"]
+resource_name = "cast"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.057711, 0), Vector3(0, 4.013, 0), Vector3(0, 1.057711, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.23333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_event_frame"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eqx3m"]
+_data = {
+&"RESET": SubResource("Animation_x5yyu"),
+&"cast": SubResource("Animation_h728r")
+}
+
+[node name="ActorSkin" instance=ExtResource("1_h728r")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.057711, 0)
+mesh = SubResource("CapsuleMesh_h728r")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_eqx3m")
+}

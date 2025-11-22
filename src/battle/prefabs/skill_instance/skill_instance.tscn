@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnjdk64aifjs7"]
+
+[ext_resource type="Script" uid="uid://ci4e1ulo5401e" path="res://src/battle/prefabs/skill_instance/skill_instance.gd" id="1_qyred"]
+
+[node name="SkillInstance" type="Node3D" node_paths=PackedStringArray("animation_player") groups=["SkillInstance"]]
+script = ExtResource("1_qyred")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfanuktxrt0kh"]
+
+[ext_resource type="PackedScene" uid="uid://daa0gjdmfelx2" path="res://src/battle/ui/damage_number/damage_number.tscn" id="1_4n86f"]
+
+[node name="DamageNumberResist" instance=ExtResource("1_4n86f")]
+
+[node name="Label" parent="." index="0"]
+theme_override_colors/font_color = Color(0, 0.5803922, 0.80784315, 1)
+text = "RESIST
+${1}"
