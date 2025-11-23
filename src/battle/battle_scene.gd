@@ -1,5 +1,4 @@
 extends Node3D
-class_name BattleScene
 
 @export var signal_bus: BattleSignalBus
 @export var battle_actor_parent: BattleActorParent

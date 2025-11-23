@@ -2,6 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://cfiixnd6wvsti" path="res://src/battle/battle_scene.tscn" id="1_eewff"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1762246564]
 
-[node name="BattleScene" parent="." instance=ExtResource("1_eewff")]
+[node name="BattleScene" parent="." unique_id=1437664820 instance=ExtResource("1_eewff")]

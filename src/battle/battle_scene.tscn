@@ -6,9 +6,9 @@
 [ext_resource type="Script" uid="uid://bntq717626mvh" path="res://src/battle/managers/battle_skill_manager.gd" id="3_r6mhw"]
 [ext_resource type="Script" uid="uid://qn0q7xun2n63" path="res://src/battle/core/battle_signal_bus.gd" id="5_jdlxq"]
 [ext_resource type="Script" uid="uid://4ph2duipyerb" path="res://src/battle/core/battle_context.gd" id="6_mutde"]
-[ext_resource type="Script" uid="uid://cs57ajk2k20yh" path="res://src/battle/managers/battle_actor_controller.gd" id="6_r6mhw"]
+[ext_resource type="Script" uid="uid://cs57ajk2k20yh" path="res://src/battle/managers/battle_turn_manager.gd" id="6_r6mhw"]
 [ext_resource type="PackedScene" uid="uid://b07wq2d3menh0" path="res://src/battle/ui/battle_ui.tscn" id="7_16l6v"]
-[ext_resource type="Script" uid="uid://clxmytce4cs8r" path="res://src/battle/managers/battle_turn_order.gd" id="8_w6n6o"]
+[ext_resource type="Script" uid="uid://cplromtxln6lj" path="res://src/battle/managers/battle_ai_manager.gd" id="10_6by3n"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6n6o"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -23,50 +23,50 @@ sky = SubResource("Sky_16l6v")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="BattleScene" type="Node3D" node_paths=PackedStringArray("signal_bus", "battle_actor_parent")]
+[node name="BattleScene" type="Node3D" unique_id=696232986 node_paths=PackedStringArray("signal_bus", "battle_actor_parent")]
 script = ExtResource("1_mswv1")
 signal_bus = NodePath("BattleSignalBus")
 battle_actor_parent = NodePath("BattleActorParent")
 
-[node name="BattleArena" type="Node3D" parent="."]
+[node name="BattleArena" type="Node3D" parent="." unique_id=1945334860]
 script = ExtResource("2_u5n4n")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="BattleArena"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="BattleArena" unique_id=1293667327]
 environment = SubResource("Environment_6by3n")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BattleArena"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="BattleArena" unique_id=1376790291]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="BattleSkillParent" type="Node3D" parent="." node_paths=PackedStringArray("signal_bus", "battle_context")]
+[node name="BattleSkillParent" type="Node3D" parent="." unique_id=792281506 node_paths=PackedStringArray("signal_bus", "battle_context")]
 script = ExtResource("3_r6mhw")
 signal_bus = NodePath("../BattleSignalBus")
 battle_context = NodePath("../BattleContext")
 
-[node name="BattleActorController" type="Node" parent="." node_paths=PackedStringArray("battle_context", "signal_bus")]
+[node name="BattleTurnManager" type="Node" parent="." unique_id=1029996520 node_paths=PackedStringArray("battle_context", "signal_bus")]
 script = ExtResource("6_r6mhw")
 battle_context = NodePath("../BattleContext")
 signal_bus = NodePath("../BattleSignalBus")
 
-[node name="BattleTurnOrder" type="Node" parent="." node_paths=PackedStringArray("battle_context", "signal_bus")]
-script = ExtResource("8_w6n6o")
-battle_context = NodePath("../BattleContext")
-signal_bus = NodePath("../BattleSignalBus")
-
-[node name="BattleActorParent" type="Node3D" parent="." node_paths=PackedStringArray("signal_bus", "battle_context")]
+[node name="BattleActorParent" type="Node3D" parent="." unique_id=105570958 node_paths=PackedStringArray("signal_bus", "battle_context")]
 script = ExtResource("3_6cbqe")
 signal_bus = NodePath("../BattleSignalBus")
 battle_context = NodePath("../BattleContext")
 
-[node name="BattleUI" parent="." node_paths=PackedStringArray("signal_bus", "battle_context") instance=ExtResource("7_16l6v")]
+[node name="BattleUI" parent="." unique_id=74191684 node_paths=PackedStringArray("signal_bus", "battle_context") instance=ExtResource("7_16l6v")]
 signal_bus = NodePath("../BattleSignalBus")
 battle_context = NodePath("../BattleContext")
 
-[node name="BattleSignalBus" type="Node" parent="."]
+[node name="BattleSignalBus" type="Node" parent="." unique_id=1440955938]
 script = ExtResource("5_jdlxq")
 
-[node name="BattleContext" type="Node" parent="."]
+[node name="BattleContext" type="Node" parent="." unique_id=123655308]
 script = ExtResource("6_mutde")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1392083253]
 transform = Transform3D(0.9999619, -0.0064338674, 0.005895557, 0, 0.6755904, 0.7372772, -0.008726525, -0.7372491, 0.6755647, 0.059384108, 7.4263635, 6.804753)
+
+[node name="BattleAIManager" type="Node" parent="." unique_id=525869972 node_paths=PackedStringArray("signal_bus", "battle_context")]
+script = ExtResource("10_6by3n")
+signal_bus = NodePath("../BattleSignalBus")
+battle_context = NodePath("../BattleContext")

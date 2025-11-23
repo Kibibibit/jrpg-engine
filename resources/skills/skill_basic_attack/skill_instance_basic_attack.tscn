@@ -55,13 +55,13 @@ _data = {
 
 [sub_resource type="SphereMesh" id="SphereMesh_cnlem"]
 
-[node name="SkillInstance" instance=ExtResource("1_cnlem")]
+[node name="SkillInstance" unique_id=1580294841 instance=ExtResource("1_cnlem")]
 
 [node name="AnimationPlayer" parent="." index="0"]
 libraries = {
 &"": SubResource("AnimationLibrary_hu8i3")
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=1186634529]
 visible = false
 mesh = SubResource("SphereMesh_cnlem")

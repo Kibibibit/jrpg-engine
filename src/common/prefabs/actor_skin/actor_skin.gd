@@ -36,6 +36,9 @@ func _ready() -> void:
 	animation_player.animation_finished.connect(_animation_finished)
 
 func _play_animation(animation_name: StringName) -> void:
+	if not animation_player.has_animation(animation_name):
+		push_warning("missing animation %s" % animation_name)
+		return
 	if not INTERRUPTABLE[current_animation]:
 		return
 	current_animation = animation_name
@@ -65,6 +68,7 @@ func _animation_finished(anim: StringName):
 	if _awaiting_event:
 		push_warning("Animation finished before event frame was reached: %s" % anim)
 		_on_event_frame()
+		_awaiting_event = false
 		
 
 	if anim != ANIM_DEAD:

@@ -5,6 +5,8 @@ var character_states: Dictionary[int, CharacterState] = {}
 var character_state_id_to_actor: Dictionary[int, BattleActor] = {}
 var character_state_id_to_team: Dictionary[int, Team.Type] = {}
 
+var turn_order: Array[CharacterState] = []
+
 func get_characters(alive_only: bool = false) -> Array[CharacterState]:
 	var characters: Array[CharacterState] = []
 	for value in character_states.values():
