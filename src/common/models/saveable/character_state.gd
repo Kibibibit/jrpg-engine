@@ -3,6 +3,7 @@ class_name CharacterState
 
 signal hp_updated
 signal mp_updated
+signal restart_animation
 
 ## Mutable data for character, such as current hp, mp, ailments, temporary weaknesses/buffs
 ## Used to save player character data
@@ -119,6 +120,7 @@ func get_is_defending() -> bool:
 
 func set_is_defending(defending: bool) -> void:
 	is_defending = defending
+	restart_animation.emit()
 
 func get_attack_modifier() -> float:
 	var attack_mod: float = modifiers.get_attack_modifier()
@@ -165,3 +167,13 @@ func post_turn_update() -> void:
 		if ailment.duration <= 0:
 			remaining_ailments.erase(ailment)
 	ailments = remaining_ailments
+
+func get_idle_animation() -> StringName:
+	## TODO: Get these from the template maybe?
+	if is_defending:
+		return &"DEFEND"
+	else:
+		if float(current_hp)/float(get_max_hp()) < 0.4:
+			return &"HURT"
+		else:
+			return &"IDLE"

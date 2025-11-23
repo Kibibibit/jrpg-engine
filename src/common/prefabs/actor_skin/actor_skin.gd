@@ -1,8 +1,8 @@
 extends Node3D
 class_name ActorSkin
 
-signal animation_finished
 signal animation_event_frame
+signal animation_finished
 
 @export var animation_player: AnimationPlayer
 @export var center_of_mass: Node3D
@@ -10,7 +10,10 @@ signal animation_event_frame
 @export var weapon_left: Node3D
 @export var weapon_right: Node3D
 
+## TODO: This whole animation system needs a serious rework
+
 const ANIM_IDLE: StringName = &"IDLE"
+const ANIM_HURT: StringName = &"HURT"
 const ANIM_HIT: StringName = &"HIT"
 const ANIM_DODGE: StringName = &"DODGE"
 const ANIM_DEAD: StringName = &"DEAD"
@@ -20,29 +23,31 @@ const ANIM_ATTACK: StringName = &"ATTACK"
 const INTERRUPTABLE: Dictionary[StringName, bool] = {
 	ANIM_CAST: false,
 	ANIM_ATTACK: false,
-	ANIM_IDLE: true,
-	ANIM_HIT: true,
 	ANIM_DODGE: false,
 	ANIM_DEAD: false,
 }
 
+var idle_animation: StringName = ANIM_IDLE
 var current_animation: StringName = ANIM_IDLE
 var _awaiting_event: bool = false
+
+var _get_idle_animation: Callable = _get_default_idle_animation
 
 ## Owner of an actor's 3d mesh and animation system
 
 func _ready() -> void:
-	animation_player.play(ANIM_IDLE)
+	_play_animation(_get_idle_animation.call())
 	animation_player.animation_finished.connect(_animation_finished)
 
 func _play_animation(animation_name: StringName) -> void:
-	if not animation_player.has_animation(animation_name):
-		push_warning("missing animation %s" % animation_name)
-		return
-	if not INTERRUPTABLE[current_animation]:
-		return
 	current_animation = animation_name
-	animation_player.play(animation_name)
+	if not animation_player.has_animation(current_animation):
+		assert(not animation_player.get_animation_list().is_empty(), "No animations found for animation player!")
+		var new_animation := animation_player.get_animation_list()[0]
+		push_warning("missing animation %s, defaulting to %s" % [current_animation, new_animation])
+		current_animation = StringName(new_animation)
+		
+	animation_player.play(current_animation)
 
 func play_eventful_animation(animation_name: StringName) -> void:
 	_play_animation(animation_name)
@@ -69,11 +74,11 @@ func _animation_finished(anim: StringName):
 		push_warning("Animation finished before event frame was reached: %s" % anim)
 		_on_event_frame()
 		_awaiting_event = false
-		
 
+	animation_finished.emit()
+	
 	if anim != ANIM_DEAD:
-		current_animation = ANIM_IDLE
-		animation_player.play(ANIM_IDLE)
+		_play_animation(_get_idle_animation.call())
 
 ## TODO: Work out when to use these, probably when the skill is selected, and then reset after the skill is done
 func turn_towards(target_position: Vector3) -> void:
@@ -83,3 +88,17 @@ func turn_towards(target_position: Vector3) -> void:
 
 func reset_orientation() -> void:
 	rotation = Vector3.ZERO
+
+func set_get_idle_animation(fn: Callable) -> void:
+	_get_idle_animation = fn
+
+func _get_default_idle_animation() -> StringName:
+	return ANIM_IDLE
+func restart_animation() -> void:
+	_play_animation(_get_idle_animation.call())
+
+func _check_is_animation_interruptable(anim: StringName) -> bool:
+	if INTERRUPTABLE.has(anim):
+		return INTERRUPTABLE[anim]
+	else:
+		return true

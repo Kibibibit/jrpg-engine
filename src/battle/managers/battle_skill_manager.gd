@@ -19,7 +19,6 @@ var instances: Array[SkillInstance] = []
 func _ready() -> void:
 	assert(signal_bus != null, "BattleSkillManager: signal_bus is null")
 	assert(battle_context != null, "BattleSkillManager: battle_context is null")
-	signal_bus.create_skill_instance.connect(_create_skill_instance)
 	signal_bus.request_execute_skill.connect(_on_request_execute_skill)
 
 func _on_request_execute_skill(user: CharacterState, skill: Skill, targets: Array[CharacterState]) -> void:
@@ -44,11 +43,15 @@ func _on_request_execute_skill(user: CharacterState, skill: Skill, targets: Arra
 		if result_set.is_critical:
 			is_critical = true
 		results.append(result_set)
-
-
+		
 	## TODO: Play a different animation on crit
-	signal_bus.request_eventful_animation.emit(user, skill.cast_animation)
-	await signal_bus.on_eventful_animation_event
+	if skill.cast_animation_type != Skill.CastAnimationType.NONE:
+		signal_bus.request_animation.emit(
+			user, 
+			skill.cast_animation,
+			skill.cast_animation_type == Skill.CastAnimationType.EVENTFUL
+		)
+		await signal_bus.on_animation_event
 
 	for result_set in results:
 		_create_skill_instance(user, skill, result_set)

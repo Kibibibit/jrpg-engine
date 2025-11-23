@@ -26,6 +26,11 @@ enum TargetGrouping {
 	ALL
 }
 
+enum CastAnimationType {
+	NONE,
+	NO_EVENT,
+	EVENTFUL
+}
 
 @export var display_name: String
 
@@ -38,6 +43,7 @@ enum TargetGrouping {
 @export var min_random_targets: int = 1
 @export var max_random_targets: int = 1
 @export var cast_animation: StringName = &"CAST"
+@export var cast_animation_type: CastAnimationType = CastAnimationType.EVENTFUL
 @export var timing: float = 0.0
 
 @export var cost_amount: int

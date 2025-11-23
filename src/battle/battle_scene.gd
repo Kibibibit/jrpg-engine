@@ -18,8 +18,7 @@ var test_formation_scene: PackedScene = preload("uid://dacrhvys5oaud")
 ## Starts the scene
 
 func _ready() -> void:
-	## TODO: Run cleanup before starting new command
-	signal_bus.all_skill_instances_finished.connect(_do_turn)
+
 	start_battle()
 
 func start_battle() -> void:
@@ -49,10 +48,6 @@ func start_battle() -> void:
 
 	await signal_bus.all_actors_entered_battle
 
-	_do_turn()
+	signal_bus.request_next_turn.emit()
 
 	## TODO: Await game end command
-
-func _do_turn() -> void:
-	## TODO: Pre/Post turn character stuff
-	signal_bus.request_next_turn.emit()

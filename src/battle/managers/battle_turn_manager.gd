@@ -19,6 +19,8 @@ func _on_request_next_turn() -> void:
 		_create_turn_order()
 
 	var character: CharacterState = battle_context.turn_order.pop_front()
+	
+	_on_character_turn_start(character)
 
 	var character_team: Team.Type = battle_context.get_character_team(character)
 	
@@ -27,6 +29,12 @@ func _on_request_next_turn() -> void:
 	else:
 		signal_bus.request_ai_character_turn.emit(character)
 	
+	## TODO: Await other things too maybe?
+	await signal_bus.all_skill_instances_finished
+	
+	_on_character_turn_end(character)
+	
+	signal_bus.request_next_turn.emit()
 
 
 func _execute_skill(character: CharacterState, skill: Skill, targets: Array[CharacterState]) -> void:
@@ -55,3 +63,12 @@ func _create_turn_order() -> void:
 func _on_character_death(user: CharacterState) -> void:
 	if user in battle_context.turn_order:
 		battle_context.turn_order.erase(user)
+
+
+func _on_character_turn_start(character: CharacterState) -> void:
+	if character.get_is_defending():
+		character.set_is_defending(false)
+
+func _on_character_turn_end(_character: CharacterState) -> void:
+	## TODO: Ailments that deal damage, etc
+	pass

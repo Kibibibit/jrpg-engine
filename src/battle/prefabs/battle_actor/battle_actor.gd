@@ -13,8 +13,10 @@ var battle_context: BattleContext
 func _ready() -> void:
 	add_to_group(Groups.BATTLE_ACTOR)
 	skin = character_state.get_skin_scene().instantiate()
+	character_state.restart_animation.connect(_on_restart_animation)
 	add_child(skin)
-	signal_bus.request_eventful_animation.connect(_on_request_eventful_animation)
+	skin.set_get_idle_animation(_get_idle_animation)
+	signal_bus.request_animation.connect(_on_request_animation)
 	signal_bus.on_hit.connect(_on_hit)
 	signal_bus.on_heal.connect(_on_heal)
 	signal_bus.on_reflect.connect(_on_reflect)
@@ -31,14 +33,17 @@ static func from_state(p_state: CharacterState) -> BattleActor:
 func get_character_id() -> int:
 	return character_state.get_instance_id()
 
-func _on_request_eventful_animation(character: CharacterState, animation_name: StringName) -> void:
+func _on_request_animation(character: CharacterState, animation_name: StringName, eventful: bool) -> void:
 	if character != character_state:
 		return
+	if eventful:
+		await skin.play_eventful_animation(animation_name)
+		signal_bus.on_animation_event.emit(character)
+	else:
+		skin.play_animation(animation_name)
+		await skin.animation_finished
+		signal_bus.on_animation_event.emit(character)
 	
-
-	await skin.play_eventful_animation(animation_name)
-	signal_bus.on_eventful_animation_event.emit(character)
-
 func _on_death(user: CharacterState) -> void:
 	if user != character_state:
 		return
@@ -85,3 +90,9 @@ func get_target_position(target_position_type: TargetPosition.Type) -> Vector3:
 			return skin.above_head.global_position
 		_:
 			return global_position
+
+func _get_idle_animation() -> StringName:
+	return character_state.get_idle_animation()
+
+func _on_restart_animation() -> void:
+	skin.restart_animation()

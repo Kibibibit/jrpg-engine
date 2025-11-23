@@ -14,6 +14,7 @@ display_name = "Defend"
 target_scope = 0
 targets_allies = true
 targets_enemies = false
+cast_animation_type = 0
 effects = Array[ExtResource("1_wv78g")]([SubResource("Resource_l743b")])
 instance_scene_id = &"skill/defend/instance"
 metadata/_custom_type_script = "uid://b4eecvspsftsd"
