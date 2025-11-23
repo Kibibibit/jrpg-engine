@@ -30,4 +30,3 @@ func do_heal(user: CharacterState, target: CharacterState, amount: int) -> void:
 	
 func do_defend(user: CharacterState) -> void:
 	user.set_is_defending(true)
-	## TODO: Emit a signal to do animations

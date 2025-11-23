@@ -31,6 +31,8 @@ func _on_request_next_turn() -> void:
 	
 	## TODO: Await other things too maybe?
 	await signal_bus.all_skill_instances_finished
+	## TODO: Replace with a check for ui events to be done
+	await GlobalTimers.wait(1.0)
 	
 	_on_character_turn_end(character)
 	

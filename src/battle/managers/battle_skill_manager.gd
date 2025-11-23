@@ -102,6 +102,4 @@ func _on_instance_finished(instance: SkillInstance) -> void:
 
 func _check_all_instances_finished() -> void:
 	if instances.is_empty() and all_instances_created:
-		# TODO: Maybe move this delay to the battle scene?
-		await GlobalTimers.wait(1.0)
 		signal_bus.all_skill_instances_finished.emit()
