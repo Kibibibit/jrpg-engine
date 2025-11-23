@@ -32,27 +32,38 @@ func _ready() -> void:
 	defend_button.pressed.connect(_on_defend_button_pressed)
 	pass_button.pressed.connect(_on_pass_button_pressed)
 
-func _disable_skill_button() -> bool:
-	## TODO: Move this somewhere
+func _check_actions_enabled() -> void:
+	
+	
+	var allied_characters: Array[CharacterState] = battle_context.get_allied_characters(character)
+	var enemy_characters: Array[CharacterState] = battle_context.get_enemy_characters(character)
+	# Attack button check
+	attack_button.disabled = true
+	if SkillUtils.can_use(character, character.get_attack_skill(), allied_characters, enemy_characters):
+		attack_button.disabled = false
+	
+	# Skill button check
+	skill_button.disabled = true
 	var all_skills: Array[Skill] = character.get_skills()
-
-	var character_team: Team.Type = battle_context.get_character_team(character)
-
-	var allied_team: Team.Type = character_team if not character.flip_allied_team() else Team.get_opposite(character_team)
-	var enemy_team: Team.Type = Team.get_opposite(character_team) if not character.flip_enemy_team() else character_team
-	
-	var allied_characters: Array[CharacterState] = battle_context.get_team_characters(allied_team)
-	var enemy_characters: Array[CharacterState] = battle_context.get_team_characters(enemy_team)
-	
 	for skill in all_skills:
 		if SkillUtils.can_use(character, skill, allied_characters, enemy_characters):
-			return false
-	return true
+			skill_button.disabled = false
+	
+	# Item Button check
+	# TODO: Implement item checking
+	item_button.disabled = true
+	
+	# Defend button check - cannot be disabled
+	defend_button.disabled = false
+	
+	# Pass Button check
+	# TODO: Implement pass and work out if it can be disabled
+	pass_button.disabled = true
+
 
 func activate() -> void:
 	visible = true
-	item_button.disabled = true ## TODO: Check for items
-	skill_button.disabled = _disable_skill_button()
+	_check_actions_enabled()
 
 func deactivate() -> void:
 	visible = false

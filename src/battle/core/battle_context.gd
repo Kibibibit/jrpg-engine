@@ -39,6 +39,20 @@ func get_team_characters(team: Team.Type) -> Array[CharacterState]:
 			characters.append(character_state)
 	return characters
 
+func get_allied_characters(character: CharacterState) -> Array[CharacterState]:
+	var allied_team: Team.Type = get_character_team(character)
+	
+	if character.flip_allied_team():
+		allied_team = Team.get_opposite(allied_team)
+	return get_team_characters(allied_team)
+	
+func get_enemy_characters(character: CharacterState) -> Array[CharacterState]:
+	var enemy_team: Team.Type =  Team.get_opposite(get_character_team(character))
+	
+	if character.flip_enemy_team():
+		enemy_team = Team.get_opposite(enemy_team)
+	return get_team_characters(enemy_team)
+
 func get_character_from_id(p_character_id: int) -> CharacterState:
 	assert(character_states.has(p_character_id), "Character with id %d not found" % p_character_id)
 	return character_states[p_character_id]
