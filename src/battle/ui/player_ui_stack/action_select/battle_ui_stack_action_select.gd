@@ -15,10 +15,6 @@ const DEFEND_SKILL: Skill = preload("uid://ccrpmqx65jvdm")
 
 var character: CharacterState = null
 
-## TODO: On activate, validate if there are valid targets to attack, maybe?
-## Unsure if there will ever be a case where there are not
-## TODO: Validate if any items are available, disable item button if not
-
 static func create_new(p_character: CharacterState) -> BattleUIStackActionSelect:
 	var ui_action_select: BattleUIStackActionSelect = PACKED_SCENE.instantiate()
 	ui_action_select.character = p_character
@@ -33,8 +29,6 @@ func _ready() -> void:
 	pass_button.pressed.connect(_on_pass_button_pressed)
 
 func _check_actions_enabled() -> void:
-	
-	
 	var allied_characters: Array[CharacterState] = battle_context.get_allied_characters(character)
 	var enemy_characters: Array[CharacterState] = battle_context.get_enemy_characters(character)
 	# Attack button check

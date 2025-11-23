@@ -36,10 +36,10 @@ var _get_idle_animation: Callable = _get_default_idle_animation
 ## Owner of an actor's 3d mesh and animation system
 
 func _ready() -> void:
-	_play_animation(_get_idle_animation.call())
+	play_animation(_get_idle_animation.call())
 	animation_player.animation_finished.connect(_animation_finished)
 
-func _play_animation(animation_name: StringName) -> void:
+func play_animation(animation_name: StringName) -> void:
 	current_animation = animation_name
 	if not animation_player.has_animation(current_animation):
 		assert(not animation_player.get_animation_list().is_empty(), "No animations found for animation player!")
@@ -50,19 +50,19 @@ func _play_animation(animation_name: StringName) -> void:
 	animation_player.play(current_animation)
 
 func play_eventful_animation(animation_name: StringName) -> void:
-	_play_animation(animation_name)
+	play_animation(animation_name)
 	_awaiting_event = true
 	await animation_event_frame
 
 
 func play_hit_animation() -> void:
-	_play_animation(ANIM_HIT)
+	play_animation(ANIM_HIT)
 
 func play_dodge_animation() -> void:
-	_play_animation(ANIM_DODGE)
+	play_animation(ANIM_DODGE)
 
 func play_dead_animation() -> void:
-	_play_animation(ANIM_DEAD)
+	play_animation(ANIM_DEAD)
 
 func _on_event_frame() -> void:
 	_awaiting_event = false
@@ -78,7 +78,7 @@ func _animation_finished(anim: StringName):
 	animation_finished.emit()
 	
 	if anim != ANIM_DEAD:
-		_play_animation(_get_idle_animation.call())
+		play_animation(_get_idle_animation.call())
 
 ## TODO: Work out when to use these, probably when the skill is selected, and then reset after the skill is done
 func turn_towards(target_position: Vector3) -> void:
@@ -95,7 +95,7 @@ func set_get_idle_animation(fn: Callable) -> void:
 func _get_default_idle_animation() -> StringName:
 	return ANIM_IDLE
 func restart_animation() -> void:
-	_play_animation(_get_idle_animation.call())
+	play_animation(_get_idle_animation.call())
 
 func _check_is_animation_interruptable(anim: StringName) -> bool:
 	if INTERRUPTABLE.has(anim):
