@@ -19,7 +19,7 @@ func do_hit(user: CharacterState, intended_target: CharacterState, hit: Hit) -> 
 	else:
 		target.damage(hit.damage_amount)
 		signal_bus.on_hit.emit(user, target, hit)
-
+		## TODO: Work out what happens if they're dropped below 0 hp and then revived in the same turn
 		if not target.is_alive():
 			signal_bus.on_death.emit(target)
 

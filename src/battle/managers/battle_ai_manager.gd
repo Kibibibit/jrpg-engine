@@ -34,6 +34,9 @@ func _on_turn_request(character: CharacterState) -> void:
 
 	var targets: Array[CharacterState] = SkillUtils.get_targets(chosen_skill, character, allied_characters, enemy_characters)
 
+	if targets.is_empty():
+		chosen_skill = NOTHING
+
 	if chosen_skill.target_scope == Skill.TargetScope.SELF:
 		targets = [character]
 	elif chosen_skill.target_scope == Skill.TargetScope.SINGLE:

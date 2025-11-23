@@ -39,19 +39,19 @@ func get_max_hp() -> int:
 	return get_stat(Stats.Type.MAX_HP)
 
 func get_current_hp() -> int:
-	return current_hp
+	return maxi(0, current_hp)
 
 func get_max_mp() -> int:
 	return get_stat(Stats.Type.MAX_MP)
 
 func get_current_mp() -> int:
-	return current_mp
+	return maxi(0, current_mp)
 
 func is_alive() -> bool:
 	return current_hp > 0
 
 func set_current_hp(amount: int) -> void:
-	current_hp = clampi(amount, 0, get_max_hp())
+	current_hp = mini(amount, get_max_hp())
 	hp_updated.emit()
 
 func set_current_mp(amount: int) -> void:
