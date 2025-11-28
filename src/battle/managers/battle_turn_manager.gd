@@ -13,12 +13,14 @@ func _ready() -> void:
 	signal_bus.request_next_turn.connect(_on_request_next_turn)
 	signal_bus.on_death.connect(_on_character_death)
 	signal_bus.on_skill_selected.connect(_execute_skill)
+	signal_bus.request_pass.connect(_on_request_pass)
 
 func _on_request_next_turn() -> void:
 	if battle_context.turn_order.is_empty():
 		_create_turn_order()
+		
 
-	var character: CharacterState = battle_context.turn_order.pop_front()
+	var character: CharacterState = battle_context.turn_order.front()
 	
 	_on_character_turn_start(character)
 
@@ -36,6 +38,8 @@ func _on_request_next_turn() -> void:
 	
 	_on_character_turn_end(character)
 	
+	battle_context.turn_order.pop_front()
+	signal_bus.turn_order_changed.emit()
 	signal_bus.request_next_turn.emit()
 
 
@@ -61,10 +65,12 @@ func _create_turn_order() -> void:
 		return a.get_initiative() > b.get_initiative()
 	)
 	battle_context.turn_order = characters
+	signal_bus.turn_order_changed.emit()
 
 func _on_character_death(user: CharacterState) -> void:
 	if user in battle_context.turn_order:
 		battle_context.turn_order.erase(user)
+	signal_bus.turn_order_changed.emit()
 
 
 func _on_character_turn_start(character: CharacterState) -> void:
@@ -74,3 +80,7 @@ func _on_character_turn_start(character: CharacterState) -> void:
 func _on_character_turn_end(_character: CharacterState) -> void:
 	## TODO: Ailments that deal damage, etc
 	pass
+
+func _on_request_pass(character: CharacterState) -> void:
+	battle_context.turn_order.push_back(character)
+	signal_bus.turn_order_changed.emit()

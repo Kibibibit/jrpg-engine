@@ -11,6 +11,9 @@ const DATA: Dictionary[StringName, String] = {
 	&"skill/defend": "uid://ccrpmqx65jvdm",
 	&"skill/defend/instance": "uid://clyxerewblcie",
 	
+	&"skill/pass": "uid://bqnoyv1wgote2",
+	&"skill/pass/instance": "uid://r5nhswlp40m7",
+	
 	&"skill/nothing": "uid://csstxyr5bvy3i",
 	&"skill/nothing/instance": "uid://r5nhswlp40m7",
 	

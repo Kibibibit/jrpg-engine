@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://bqnoyv1wgote2"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_4cbcs"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_n30bo"]
+[ext_resource type="Script" uid="uid://cfc4yjgqr6fwf" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_pass.gd" id="2_s5ojh"]
+
+[sub_resource type="Resource" id="Resource_m48tq"]
+script = ExtResource("2_s5ojh")
+metadata/_custom_type_script = "uid://cfc4yjgqr6fwf"
+
+[resource]
+script = ExtResource("2_n30bo")
+display_name = "Pass"
+target_scope = 0
+targets_enemies = false
+effects = Array[ExtResource("1_4cbcs")]([SubResource("Resource_m48tq")])
+instance_scene_id = &"skill/pass/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

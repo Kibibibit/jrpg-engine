@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba155pyn2mcpr"]
+
+[ext_resource type="Script" uid="uid://b2wyinorowm61" path="res://src/battle/ui/turn_order/turn_order_card/turn_order_card.gd" id="1_agksn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6jch"]
+font_size = 9
+
+[node name="TurnOrderCard" type="Control" unique_id=346275798]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_agksn")
+
+[node name="Panel" type="Panel" parent="." unique_id=474388472]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel" unique_id=653496600]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/CenterContainer" unique_id=693379227]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_p6jch")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -30,3 +30,6 @@ func do_heal(user: CharacterState, target: CharacterState, amount: int) -> void:
 	
 func do_defend(user: CharacterState) -> void:
 	user.set_is_defending(true)
+	
+func do_pass(user: CharacterState) -> void:
+	signal_bus.request_pass.emit(user)

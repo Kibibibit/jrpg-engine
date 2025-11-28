@@ -10,6 +10,9 @@ signal actor_created(actor: BattleActor)
 signal all_actors_entered_battle()
 
 @warning_ignore("unused_signal")
+signal turn_order_changed()
+
+@warning_ignore("unused_signal")
 signal request_next_turn()
 
 @warning_ignore("unused_signal")
@@ -29,6 +32,9 @@ signal on_skill_selected(character: CharacterState, skill: Skill, targets: Array
 
 @warning_ignore("unused_signal")
 signal request_execute_skill(user: CharacterState, skill: Skill, targets: Array[CharacterState])
+
+@warning_ignore("unused_signal")
+signal request_pass(user: CharacterState)
 
 @warning_ignore("unused_signal")
 signal on_hit(user: CharacterState, target: CharacterState, hit: Hit)

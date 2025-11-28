@@ -4,7 +4,9 @@ class_name BattleUIStackActionSelect
 const PACKED_SCENE = preload("uid://mag2061hs3vw")
 
 ## TODO: Check if we want character specific defends?
+## TODO: Load these from character state potentially, or at the very least load somewhere else?
 const DEFEND_SKILL: Skill = preload("uid://ccrpmqx65jvdm")
+const PASS_SKILL: Skill = preload("uid://bqnoyv1wgote2")
 
 
 @export var attack_button: Button
@@ -51,8 +53,7 @@ func _check_actions_enabled() -> void:
 	defend_button.disabled = false
 	
 	# Pass Button check
-	# TODO: Implement pass and work out if it can be disabled
-	pass_button.disabled = true
+	pass_button.disabled = battle_context.turn_order.size() > 1
 
 
 func activate() -> void:
@@ -81,6 +82,7 @@ func _on_defend_button_pressed() -> void:
 	push(ui_target_select)
 
 func _on_pass_button_pressed() -> void:
-	## TODO: Push confirm? Either confirm or just use straight away
-	pass
+	var skill: Skill = PASS_SKILL
+	var ui_target_select: BattleUIStackTargetSelect = BattleUIStackTargetSelect.create_new(character, skill)
+	push(ui_target_select)
 	

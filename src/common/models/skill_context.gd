@@ -10,3 +10,6 @@ func do_heal(user: CharacterState, target: CharacterState, amount: int) -> void
 
 @abstract
 func do_defend(user: CharacterState) -> void
+
+@abstract
+func do_pass(user: CharacterState) -> void

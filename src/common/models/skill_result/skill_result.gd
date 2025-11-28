@@ -6,4 +6,6 @@ var user: CharacterState
 var target: CharacterState
 
 @abstract func apply(skill_context: SkillContext) -> void
-@abstract func is_critical() -> bool
+
+func is_critical() -> bool:
+	return false
