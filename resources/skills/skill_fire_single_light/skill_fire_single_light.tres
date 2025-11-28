@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://dvajb4vkbem1a"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_0gsfc"]
+[ext_resource type="Script" uid="uid://bsyukv1vxc68x" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_damage.gd" id="2_1pyaj"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_n78a3"]
+
+[sub_resource type="Resource" id="Resource_70r45"]
+script = ExtResource("2_1pyaj")
+power = 10
+damage_variance = 0.1
+base_stat = 3
+element = 3
+accuracy = 0.95
+metadata/_custom_type_script = "uid://bsyukv1vxc68x"
+
+[resource]
+script = ExtResource("2_n78a3")
+display_name = "Firebolt"
+cost_amount = 5
+effects = Array[ExtResource("1_0gsfc")]([SubResource("Resource_70r45")])
+instance_scene_id = &"skill/fire/single/light/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

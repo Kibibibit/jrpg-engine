@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://drkqmninv5ykc"]
+
+[ext_resource type="PackedScene" uid="uid://dnjdk64aifjs7" path="res://src/battle/prefabs/skill_instance/skill_instance.tscn" id="1_im861"]
+[ext_resource type="Material" uid="uid://cowlgie4caq0q" path="res://resources/skills/skill_fire_single_light/skill_fire_single_light_instance_process_material.tres" id="2_2k4mq"]
+[ext_resource type="Texture2D" uid="uid://ct0hqyd6oguot" path="res://resources/textures/particle_effects/small_fire.png" id="3_at3id"]
+
+[sub_resource type="Animation" id="Animation_sbsmb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticleParent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 1.6679069)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ParticleParent:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8fqde"]
+resource_name = "cast"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ParticleParent:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333337),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -2), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_hit_frame_reached"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ParticleParent:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7k5ub"]
+_data = {
+&"RESET": SubResource("Animation_sbsmb"),
+&"cast": SubResource("Animation_8fqde")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_soqye"]
+transparency = 1
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_at3id")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iitgl"]
+material = SubResource("StandardMaterial3D_soqye")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[node name="SkillInstance" unique_id=1821040448 instance=ExtResource("1_im861")]
+
+[node name="AnimationPlayer" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_7k5ub")
+}
+
+[node name="ParticleParent" type="Node3D" parent="." index="1" unique_id=744999625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6679069)
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="ParticleParent" index="0" unique_id=1928617240]
+amount = 50
+lifetime = 0.24000000000000002
+local_coords = true
+process_material = ExtResource("2_2k4mq")
+draw_pass_1 = SubResource("PlaneMesh_iitgl")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="ParticleParent" index="1" unique_id=871321408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2824459)
+strength = 17.94
+radius = 0.31717408

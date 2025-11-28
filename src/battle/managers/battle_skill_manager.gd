@@ -77,11 +77,17 @@ func _get_result_set(user: CharacterState, skill: Skill, targets: Array[Characte
 
 
 
-func _create_skill_instance(_user: CharacterState, skill: Skill, result_set: SkillResultSet) -> void:
+func _create_skill_instance(user: CharacterState, skill: Skill, result_set: SkillResultSet) -> void:
 	assert(result_set.targets.size() > 0, "BattleSkillManager: No targets provided for skill instance")
 	var scene: PackedScene = skill.get_instance_scene()
 	var instance: SkillInstance = scene.instantiate() as SkillInstance
 	instance.skill_context = BattleSkillContext.new(signal_bus)
+	
+	var user_actor: BattleActor = battle_context.get_actor_from_character(user)
+	var from_position := user_actor.get_target_position(TargetPosition.CENTER_OF_MASS)
+	
+	instance.from_position = from_position
+	
 	var target_position := Vector3.ZERO
 	for target in result_set.targets:
 		var target_actor: BattleActor = battle_context.get_actor_from_character(target)

@@ -21,7 +21,10 @@ const DATA: Dictionary[StringName, String] = {
 	&"skill/frenzy/instance": "uid://jrfaq7r5cja2",
 
 	&"skill/multi_hit": "uid://dlekop3bcjqj6",
-	&"skill/multi_hit/instance": "uid://jrfaq7r5cja2"
+	&"skill/multi_hit/instance": "uid://jrfaq7r5cja2",
+	
+	&"skill/fire/single/light": "uid://dvajb4vkbem1a",
+	&"skill/fire/single/light/instance": "uid://drkqmninv5ykc"
 
 }
 

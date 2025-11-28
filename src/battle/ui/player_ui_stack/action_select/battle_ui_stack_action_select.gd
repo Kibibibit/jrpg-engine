@@ -53,7 +53,7 @@ func _check_actions_enabled() -> void:
 	defend_button.disabled = false
 	
 	# Pass Button check
-	pass_button.disabled = battle_context.turn_order.size() > 1
+	pass_button.disabled = battle_context.turn_order.size() <= 1
 
 
 func activate() -> void:

@@ -6,6 +6,7 @@ signal on_finished(instance: SkillInstance)
 @export var animation_player: AnimationPlayer
 
 var target_position: Vector3 = Vector3.ZERO
+var from_position: Vector3 = Vector3.ZERO
 var targets: Array[CharacterState] = []
 var results: Array[SkillResult] = []
 var skill_context: SkillContext
@@ -15,6 +16,8 @@ var reached_hit_frame: bool = false
 func _ready() -> void:
 	global_position = target_position
 	animation_player.animation_finished.connect(_on_animation_finished)
+	if !from_position.is_equal_approx(target_position):
+		look_at(from_position)
 
 func play() -> void:
 	animation_player.play(&"cast")
