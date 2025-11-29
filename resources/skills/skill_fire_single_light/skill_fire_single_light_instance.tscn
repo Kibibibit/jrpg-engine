@@ -114,5 +114,5 @@ draw_pass_1 = SubResource("PlaneMesh_iitgl")
 
 [node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="ParticleParent" index="1" unique_id=871321408]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2824459)
-strength = 17.94
+strength = 25.47
 radius = 0.31717408
