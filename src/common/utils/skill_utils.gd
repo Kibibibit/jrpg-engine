@@ -4,6 +4,15 @@ class_name SkillUtils
 
 
 
+static func _collect_targets(
+	effect: SkillEffect, user: CharacterState, targets: Array[CharacterState], skill: Skill, possible_targets: Array[CharacterState]
+) -> void:
+	for target in targets:
+		if target == user and not skill.targets_self:
+			continue
+		if effect.can_use(user, [target]):
+			possible_targets.append(target)
+
 static func get_targets(
 	skill: Skill, 
 	user: CharacterState, 
@@ -16,14 +25,10 @@ static func get_targets(
 		return [user]
 	if skill.targets_allies:
 		for effect in skill.effects:
-			for target in allied_characters:
-				if effect.can_use(user, [target]):
-					possible_targets.append(target)
+			SkillUtils._collect_targets(effect, user, allied_characters, skill, possible_targets)
 	if skill.targets_enemies:
 		for effect in skill.effects:
-			for target in enemy_characters:
-				if effect.can_use(user, [target]):
-					possible_targets.append(target)
+			SkillUtils._collect_targets(effect, user, enemy_characters, skill, possible_targets)
 	
 	return possible_targets
 	

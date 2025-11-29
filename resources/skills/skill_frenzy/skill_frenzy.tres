@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://bsyukv1vxc68x"
 [resource]
 script = ExtResource("2_c0tw0")
 display_name = "Frenzy"
+targets_self = true
 targets_allies = true
 cast_animation = &"ATTACK"
 effects = Array[ExtResource("1_ihh8w")]([SubResource("Resource_f8awr")])

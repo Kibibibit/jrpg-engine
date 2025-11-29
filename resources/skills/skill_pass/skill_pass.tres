@@ -12,6 +12,7 @@ metadata/_custom_type_script = "uid://cfc4yjgqr6fwf"
 script = ExtResource("2_n30bo")
 display_name = "Pass"
 target_scope = 0
+targets_self = true
 targets_enemies = false
 effects = Array[ExtResource("1_4cbcs")]([SubResource("Resource_m48tq")])
 instance_scene_id = &"skill/pass/instance"

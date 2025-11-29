@@ -11,6 +11,7 @@ var targets: Array[CharacterState] = []
 var results: Array[SkillResult] = []
 var skill_context: SkillContext
 
+var reached_early_finish: bool = false
 var reached_hit_frame: bool = false
 
 func _ready() -> void:
@@ -32,11 +33,20 @@ func _hit_frame_reached() -> void:
 		@warning_ignore("redundant_await")
 		await result.apply(skill_context)
 
-
+func _early_finish_reached() -> void:
+	if reached_early_finish:
+		push_warning("Hit early finish multiple times")
+	if not reached_hit_frame:
+		push_warning("Early finish triggered before hit frame")
+		_hit_frame_reached()
+	
+	on_finished.emit(self)
+	
 func _on_animation_finished(_anim_name: String) -> void:
 	if not reached_hit_frame:
 		await _hit_frame_reached()
-
-	on_finished.emit(self)
+	
+	if not reached_early_finish:
+		on_finished.emit(self)
 	queue_free()
 	

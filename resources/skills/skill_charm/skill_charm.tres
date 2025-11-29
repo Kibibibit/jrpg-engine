@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=7 format=3 uid="uid://hbfc4aysg1qi"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_ks4op"]
+[ext_resource type="Script" uid="uid://cp8ojvy4pecty" path="res://src/common/models/saveable/ailment/impl/ailment_charm.gd" id="2_83q05"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_l5kjo"]
+[ext_resource type="Script" uid="uid://cvu001ot85h7c" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_ailment.gd" id="3_g0eql"]
+
+[sub_resource type="Resource" id="Resource_suyq6"]
+script = ExtResource("2_83q05")
+duration = 3
+metadata/_custom_type_script = "uid://cp8ojvy4pecty"
+
+[sub_resource type="Resource" id="Resource_ckbj8"]
+script = ExtResource("3_g0eql")
+ailment_chance = 0.2
+ailment = SubResource("Resource_suyq6")
+metadata/_custom_type_script = "uid://cvu001ot85h7c"
+
+[resource]
+script = ExtResource("2_l5kjo")
+display_name = "Charm"
+target_scope = 3
+target_position = 2
+cost_amount = 10
+effects = Array[ExtResource("1_ks4op")]([SubResource("Resource_ckbj8")])
+instance_scene_id = &"skill/charm/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"

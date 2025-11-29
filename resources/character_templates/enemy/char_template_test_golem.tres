@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=5 format=3 uid="uid://crv27bbjptr4j"]
+[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=6 format=3 uid="uid://crv27bbjptr4j"]
 
 [ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="1_l2k5r"]
 [ext_resource type="Script" uid="uid://cw4kn8l6ct6x0" path="res://src/common/models/saveable/stats.gd" id="1_tn4t6"]
 [ext_resource type="Script" uid="uid://dn2heulpu25el" path="res://src/common/models/saveable/character_template.gd" id="2_dmrt6"]
+[ext_resource type="Resource" uid="uid://csypc8vu2d4cu" path="res://resources/skills/skill_heal_single_small/skill_heal_single_small.tres" id="3_tn4t6"]
 
 [sub_resource type="Resource" id="Resource_fn04d"]
 script = ExtResource("1_tn4t6")
@@ -19,6 +20,7 @@ metadata/_custom_type_script = "uid://cw4kn8l6ct6x0"
 script = ExtResource("2_dmrt6")
 display_name = "Test Golem"
 base_stats = SubResource("Resource_fn04d")
+innate_skills = Array[ExtResource("1_l2k5r")]([ExtResource("3_tn4t6")])
 elemental_affinities = Dictionary[int, int]({
 0: 4,
 1: 2,

@@ -97,3 +97,18 @@ static func calculate_crit_chance(
 	var final_chance: float = base_crit_chance + (user_luck - target_luck) * 0.002
 
 	return clamp(final_chance, 0.0, 1.0)
+
+static func calculate_ailment_chance(
+	user: CharacterState,
+	target: CharacterState,
+	base_ailment_chance: float
+) -> float:
+	
+	## TODO: New formula
+	## TODO: Ailment affinities maybe?
+	var user_luck: float = float(user.get_stat(Stats.Type.LUCK)) * user.get_critical_modifier()
+	var target_luck: float = float(target.get_stat(Stats.Type.LUCK)) * target.get_critical_modifier()
+
+	var final_chance: float = base_ailment_chance + (user_luck - target_luck) * 0.002
+
+	return clamp(final_chance, 0.0, 1.0)

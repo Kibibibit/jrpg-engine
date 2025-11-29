@@ -7,16 +7,19 @@ enum HealType {
 }
 
 @export var power: int
+@export var stat_affected: bool = false
 @export var base_stat: Stats.Type
 @export var heal_type: HealType = HealType.FLAT
 
 func get_results(user: CharacterState, targets: Array[CharacterState]) -> Array[SkillResult]:
 	
+	## TODO: Move to battle calculator
 	var total_power: float = float(power)
 	var user_stat: float = float(user.get_stat(base_stat))
 
+	if stat_affected:
 	## TODO: Maybe make this 0.01 configurable
-	total_power *= (1.0 + user_stat * 0.01)
+		total_power *= (1.0 + user_stat * 0.01)
 
 	var results: Array[SkillResult] = []
 	for target in targets:
@@ -27,7 +30,6 @@ func get_results(user: CharacterState, targets: Array[CharacterState]) -> Array[
 			total_power /= 100.0
 			heal_amount = floori(total_power * float(target.get_max_hp()))
 
-		## TODO: Actual constructor
 		var result: SkillResultHeal = SkillResultHeal.new()
 		result.amount = heal_amount
 		result.user = user

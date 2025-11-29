@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=5 format=3 uid="uid://u3gp4un2ewuw"]
+[gd_resource type="Resource" script_class="CharacterTemplate" load_steps=6 format=3 uid="uid://u3gp4un2ewuw"]
 
 [ext_resource type="Script" uid="uid://cw4kn8l6ct6x0" path="res://src/common/models/saveable/stats.gd" id="1_o2yn1"]
 [ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="1_u02ba"]
 [ext_resource type="Script" uid="uid://dn2heulpu25el" path="res://src/common/models/saveable/character_template.gd" id="2_t8w8k"]
+[ext_resource type="Resource" uid="uid://hbfc4aysg1qi" path="res://resources/skills/skill_charm/skill_charm.tres" id="3_o2yn1"]
 
 [sub_resource type="Resource" id="Resource_a7677"]
 script = ExtResource("1_o2yn1")
@@ -19,6 +20,7 @@ metadata/_custom_type_script = "uid://cw4kn8l6ct6x0"
 script = ExtResource("2_t8w8k")
 display_name = "Test Wraith"
 base_stats = SubResource("Resource_a7677")
+innate_skills = Array[ExtResource("1_u02ba")]([ExtResource("3_o2yn1")])
 elemental_affinities = Dictionary[int, int]({
 0: 2,
 1: 3,

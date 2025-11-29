@@ -36,6 +36,7 @@ enum CastAnimationType {
 
 
 @export var target_scope: TargetScope = TargetScope.SINGLE
+@export var targets_self: bool = false
 @export var targets_allies: bool = false
 @export var targets_enemies: bool = true
 @export var target_grouping: TargetGrouping = TargetGrouping.PER_TARGET

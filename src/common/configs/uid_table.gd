@@ -24,7 +24,14 @@ const DATA: Dictionary[StringName, String] = {
 	&"skill/multi_hit/instance": "uid://jrfaq7r5cja2",
 	
 	&"skill/fire/single/light": "uid://dvajb4vkbem1a",
-	&"skill/fire/single/light/instance": "uid://drkqmninv5ykc"
+	&"skill/fire/single/light/instance": "uid://drkqmninv5ykc",
+	
+	&"skill/charm": "uid://hbfc4aysg1qi",
+	&"skill/charm/instance": "uid://bjxays74tw7sn",
+	
+	&"skill/heal/single/small": "uid://csypc8vu2d4cu",
+	&"skill/heal/single/small/instance": "uid://djjlsjjqxwetg"
+	
 
 }
 

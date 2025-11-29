@@ -2,10 +2,13 @@
 extends Resource
 class_name Ailment
 
-var duration: int = 0
+@export var duration: int = 0
 
 ## TODO: AI behaviour, damage
 ## TODO: Work out how ailments will stack
+
+@abstract
+func get_ailment_id() -> StringName
 
 func flips_allies() -> bool:
 	return false

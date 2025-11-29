@@ -33,3 +33,6 @@ func do_defend(user: CharacterState) -> void:
 	
 func do_pass(user: CharacterState) -> void:
 	signal_bus.request_pass.emit(user)
+
+func apply_ailment(target: CharacterState, ailment: Ailment) -> void:
+	target.apply_ailment(ailment)

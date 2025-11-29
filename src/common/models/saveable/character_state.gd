@@ -152,6 +152,14 @@ func get_ailment_modifier() -> float:
 		ailment_mod += ailment.get_ailment_modifier_bonus()
 	return ailment_mod
 
+func apply_ailment(ailment: Ailment) -> void:
+	for a in ailments:
+		if a.get_ailment_id() == ailment.get_ailment_id():
+			a.duration += ailment.duration
+			return
+	ailments.append(ailment)
+	
+
 func pre_turn_update() -> void:
 	## TODO: Pre turn ailment effects
 	if is_defending:

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=5 format=3 uid="uid://csypc8vu2d4cu"]
+
+[ext_resource type="Script" uid="uid://bgcy83fgfoq38" path="res://src/common/models/saveable/skill_effect/skill_effect.gd" id="1_wr2tb"]
+[ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_bmq7j"]
+[ext_resource type="Script" uid="uid://da147xpniho87" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_heal.gd" id="2_j6u3t"]
+
+[sub_resource type="Resource" id="Resource_b21ga"]
+script = ExtResource("2_j6u3t")
+power = 30
+base_stat = 3
+heal_type = 1
+metadata/_custom_type_script = "uid://da147xpniho87"
+
+[resource]
+script = ExtResource("2_bmq7j")
+display_name = "Heal"
+targets_self = true
+targets_allies = true
+targets_enemies = false
+target_position = 1
+cost_amount = 10
+effects = Array[ExtResource("1_wr2tb")]([SubResource("Resource_b21ga")])
+instance_scene_id = &"skill/heal/single/small/instance"
+metadata/_custom_type_script = "uid://b4eecvspsftsd"
