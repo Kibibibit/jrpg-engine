@@ -109,7 +109,7 @@ visible = false
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="ParticleParent" index="0" unique_id=1928617240]
 amount = 50
-lifetime = 0.24000000000000002
+lifetime = 0.24
 local_coords = true
 process_material = ExtResource("2_2k4mq")
 draw_pass_1 = SubResource("PlaneMesh_iitgl")

@@ -7,7 +7,6 @@ class_name BattleActorParent
 
 
 @export var signal_bus: BattleSignalBus = null
-# @export var actor_controller: ActorController = null
 @export var battle_context: BattleContext = null
 
 var _player_formation: Formation = null
@@ -50,5 +49,4 @@ func _on_actor_entered_battle(actor: BattleActor) -> void:
 
 func inject_actor_dependencies(actor: BattleActor) -> void:
 	actor.signal_bus = signal_bus
-	# actor.actor_controller = actor_controller
 	actor.battle_context = battle_context
