@@ -78,9 +78,13 @@ func _on_reflect(user: CharacterState, target: CharacterState) -> void:
 		return
 
 	assert(user != target, "Reflect event where user and target are the same")
-
-	## TODO: Create shield, looking at user
-	await GlobalTimers.wait(0.1)
+	
+	## TODO: Currently multiple shields get created, might not be needed
+	var shield := ReflectShield.create_new()
+	add_child(shield)
+	var from_position := get_target_position(TargetPosition.Type.FEET)
+	var to_position := battle_context.get_actor_from_character(user).get_target_position(TargetPosition.Type.CENTER_OF_MASS)
+	shield.play(from_position, to_position)
 
 func get_target_position(target_position_type: TargetPosition.Type) -> Vector3:
 	match target_position_type:

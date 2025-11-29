@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctspoli8gsewm"]
+
+[ext_resource type="PackedScene" uid="uid://lqkiod6imwcs" path="res://resources/blender/reflect_shield.glb" id="1_dkjf7"]
+[ext_resource type="Script" uid="uid://bqpugrum5tv1u" path="res://src/battle/prefabs/reflect_shield/reflect_shield.gd" id="1_vbwql"]
+
+[node name="ReflectShield" type="Node3D" unique_id=582627516]
+visible = false
+script = ExtResource("1_vbwql")
+
+[node name="reflect_shield" parent="." unique_id=255410460 instance=ExtResource("1_dkjf7")]
