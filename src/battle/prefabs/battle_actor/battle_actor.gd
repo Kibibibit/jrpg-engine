@@ -21,6 +21,7 @@ func _ready() -> void:
 	signal_bus.on_heal.connect(_on_heal)
 	signal_bus.on_reflect.connect(_on_reflect)
 	signal_bus.on_death.connect(_on_death)
+	signal_bus.on_apply_ailment.connect(_on_apply_ailment)
 	await get_tree().create_timer(0.1).timeout ## TODO: Wait for skin and entry animation to play
 	entered_battle.emit()
 
@@ -85,6 +86,14 @@ func _on_reflect(user: CharacterState, target: CharacterState) -> void:
 	var from_position := get_target_position(TargetPosition.Type.FEET)
 	var to_position := battle_context.get_actor_from_character(user).get_target_position(TargetPosition.Type.CENTER_OF_MASS)
 	shield.play(from_position, to_position)
+
+func _on_apply_ailment(target: CharacterState, succeeded: bool) -> void:
+	if target != character_state:
+		return
+	
+	if succeeded:
+		skin.play_dodge_animation()
+	## TODO: Else
 
 func get_target_position(target_position_type: TargetPosition.Type) -> Vector3:
 	match target_position_type:

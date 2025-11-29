@@ -15,13 +15,14 @@ func get_results(user: CharacterState, targets: Array[CharacterState]) -> Array[
 			ailment_chance
 		)
 		
-		if randf() > final_ailment_chance:
-			return []
-			
 		var result := SkillResultAilment.new()
 		result.ailment = ailment
 		result.target = target
 		result.user = user
+		if randf() < final_ailment_chance:
+			result.succeeded = true
+			
+
 		results.append(result)
 	
 	return results

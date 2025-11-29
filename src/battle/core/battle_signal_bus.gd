@@ -46,6 +46,9 @@ signal on_death(user: CharacterState)
 signal on_heal(user: CharacterState, target: CharacterState, amount: int)
 
 @warning_ignore("unused_signal")
+signal on_apply_ailment(target: CharacterState, succeeded: bool)
+
+@warning_ignore("unused_signal")
 signal on_reflect(user: CharacterState, target: CharacterState)
 
 @warning_ignore("unused_signal")

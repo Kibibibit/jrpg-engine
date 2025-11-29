@@ -15,4 +15,4 @@ func do_defend(user: CharacterState) -> void
 func do_pass(user: CharacterState) -> void
 
 @abstract
-func apply_ailment(target: CharacterState, ailment: Ailment)
+func apply_ailment(target: CharacterState, ailment: Ailment, succeeded: bool)
