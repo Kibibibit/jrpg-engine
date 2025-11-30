@@ -10,7 +10,7 @@ static func _collect_targets(
 	for target in targets:
 		if target == user and not skill.targets_self:
 			continue
-		if effect.can_use(user, [target]):
+		if effect.can_use(user, [target]) and not possible_targets.has(target):
 			possible_targets.append(target)
 
 static func get_targets(
@@ -33,7 +33,7 @@ static func get_targets(
 	return possible_targets
 	
 static func get_user_resource_total(skill: Skill, user: CharacterState) -> int:
-	if skill.cost_resource == Skill.CostResource.MP:
+	if skill.cost_resource == CostResource.MP:
 		return user.get_current_mp()
 	else:
 		return user.get_current_hp()
@@ -50,7 +50,7 @@ static func can_use(user: CharacterState, skill: Skill, allies: Array[CharacterS
 	var skill_cost: int = SkillUtils.calculate_cost(skill, user)
 	var user_total_resource: int = SkillUtils.get_user_resource_total(skill, user)
 
-	if skill.cost_resource == Skill.CostResource.MP or skill.allowed_to_kill:
+	if skill.cost_resource == CostResource.MP or skill.allowed_to_kill:
 		if user_total_resource < skill_cost:
 			return false
 	else:

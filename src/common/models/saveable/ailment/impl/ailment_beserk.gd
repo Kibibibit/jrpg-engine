@@ -4,8 +4,6 @@ class_name AilmentBeserk
 ## TODO: Better resource lookup for this
 var SKILL_FRENZY: Skill = load(UIDTable.lookup(&"skill/frenzy"))
 
-func get_ailment_id() -> StringName:
-	return &"AILMENT_BESERK"
 
 func flips_allies() -> bool:
 	return true

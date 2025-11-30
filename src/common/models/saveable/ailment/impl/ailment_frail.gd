@@ -1,8 +1,6 @@
 extends Ailment
 class_name AilmentFrail
 
-func get_ailment_id() -> StringName:
-	return &"AILMENT_FRAIL"
 
 func elemental_affinity_override(element: Element.Type) -> Affinity.Type:
 	match element:

@@ -19,7 +19,7 @@ func get_results(user: CharacterState, targets: Array[CharacterState]) -> Array[
 		result.ailment = ailment
 		result.target = target
 		result.user = user
-		if randf() < final_ailment_chance:
+		if randf() <= final_ailment_chance:
 			result.succeeded = true
 			
 

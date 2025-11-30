@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://b4eecvspsftsd" path="res://src/common/models/saveable/skill.gd" id="2_l5kjo"]
 [ext_resource type="Script" uid="uid://cvu001ot85h7c" path="res://src/common/models/saveable/skill_effect/impl/skill_effect_ailment.gd" id="3_g0eql"]
 
-[sub_resource type="Resource" id="Resource_suyq6"]
+[sub_resource type="Resource" id="Resource_83q05"]
 script = ExtResource("2_83q05")
 duration = 3
 metadata/_custom_type_script = "uid://cp8ojvy4pecty"
@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://cp8ojvy4pecty"
 [sub_resource type="Resource" id="Resource_ckbj8"]
 script = ExtResource("3_g0eql")
 ailment_chance = 0.2
-ailment = SubResource("Resource_suyq6")
+ailment = SubResource("Resource_83q05")
 metadata/_custom_type_script = "uid://cvu001ot85h7c"
 
 [resource]

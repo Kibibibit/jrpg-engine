@@ -9,11 +9,6 @@ enum CostType {
 	PERCENTAGE
 }
 
-enum CostResource {
-	HP,
-	MP
-}
-
 enum TargetScope {
 	SELF,
 	SINGLE,
@@ -49,7 +44,7 @@ enum CastAnimationType {
 
 @export var cost_amount: int
 @export var cost_type: CostType = CostType.FLAT
-@export var cost_resource: CostResource = CostResource.MP
+@export var cost_resource: CostResource.Type = CostResource.MP
 ## If true, and [cost_resource] is HP, the skill is allowed to kill the user.
 @export var allowed_to_kill: bool = false
 

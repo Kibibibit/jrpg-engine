@@ -56,7 +56,7 @@ func _get_skill_cost_string(skill: Skill) -> String:
 	var cost_string: String = ""
 
 	var cost_amount: int = SkillUtils.calculate_cost(skill, character)
-	if skill.cost_resource == Skill.CostResource.MP:
+	if skill.cost_resource == CostResource.MP:
 		cost_string += "%d MP" % cost_amount
 	else:
 		cost_string += "%d HP" % cost_amount

@@ -91,7 +91,7 @@ func _on_apply_ailment(target: CharacterState, succeeded: bool) -> void:
 	if target != character_state:
 		return
 	
-	if succeeded:
+	if not succeeded:
 		skin.play_dodge_animation()
 	## TODO: Else
 

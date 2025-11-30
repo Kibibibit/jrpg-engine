@@ -158,17 +158,10 @@ func apply_ailment(ailment: Ailment) -> void:
 			a.duration += ailment.duration
 			return
 	ailments.append(ailment)
-	
-
-func pre_turn_update() -> void:
-	## TODO: Pre turn ailment effects
-	if is_defending:
-		## TODO: Emit a signal to update animations
-		is_defending = false
 
 
-func post_turn_update() -> void:
-	## TODO: Post turn ailment effects (Burn, Poison, Regen, so on)
+
+func reduce_ailments() -> void:
 	var remaining_ailments: Array[Ailment] = ailments.duplicate()
 	for ailment in ailments:
 		ailment.duration -= 1

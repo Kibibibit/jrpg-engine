@@ -3,9 +3,6 @@ class_name AilmentCharm
 
 ## TODO: AI affects
 
-func get_ailment_id() -> StringName:
-	return &"AILMENT_CHARM"
-
 func flips_allies() -> bool:
 	return true
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfiixnd6wvsti"]
+[gd_scene load_steps=14 format=3 uid="uid://cfiixnd6wvsti"]
 
 [ext_resource type="Script" uid="uid://cqlt100mgrgnu" path="res://src/battle/battle_scene.gd" id="1_mswv1"]
 [ext_resource type="Script" uid="uid://c1ahepp4o4p66" path="res://src/battle/core/battle_arena.gd" id="2_u5n4n"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cs57ajk2k20yh" path="res://src/battle/managers/battle_turn_manager.gd" id="6_r6mhw"]
 [ext_resource type="PackedScene" uid="uid://b07wq2d3menh0" path="res://src/battle/ui/battle_ui.tscn" id="7_16l6v"]
 [ext_resource type="Script" uid="uid://cplromtxln6lj" path="res://src/battle/managers/battle_ai_manager.gd" id="10_6by3n"]
+[ext_resource type="Script" uid="uid://bp33h4mkfudok" path="res://src/battle/managers/battle_character_state_manager.gd" id="10_vtpwn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_w6n6o"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -68,5 +69,10 @@ transform = Transform3D(0.9999619, -0.0064338674, 0.005895557, 0, 0.6755904, 0.7
 
 [node name="BattleAIManager" type="Node" parent="." unique_id=525869972 node_paths=PackedStringArray("signal_bus", "battle_context")]
 script = ExtResource("10_6by3n")
+signal_bus = NodePath("../BattleSignalBus")
+battle_context = NodePath("../BattleContext")
+
+[node name="BattleCharacterStateManager" type="Node" parent="." unique_id=685154973 node_paths=PackedStringArray("signal_bus", "battle_context")]
+script = ExtResource("10_vtpwn")
 signal_bus = NodePath("../BattleSignalBus")
 battle_context = NodePath("../BattleContext")

@@ -7,8 +7,9 @@ class_name Ailment
 ## TODO: AI behaviour, damage
 ## TODO: Work out how ailments will stack
 
-@abstract
-func get_ailment_id() -> StringName
+
+func get_ailment_id() -> int:
+	return hash(get_script().get_global_name())
 
 func flips_allies() -> bool:
 	return false
@@ -39,3 +40,6 @@ func get_critical_modifier_bonus() -> float:
 
 func get_ailment_modifier_bonus() -> float:
 	return 0.0
+
+func get_post_effect() -> AilmentPostEffect:
+	return null

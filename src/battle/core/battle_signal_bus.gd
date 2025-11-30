@@ -37,6 +37,21 @@ signal request_execute_skill(user: CharacterState, skill: Skill, targets: Array[
 signal request_pass(user: CharacterState)
 
 @warning_ignore("unused_signal")
+signal request_character_pre_turn(character: CharacterState)
+
+@warning_ignore("unused_signal")
+signal on_character_pre_turn_complete(character: CharacterState)
+
+@warning_ignore("unused_signal")
+signal request_character_post_turn(character: CharacterState)
+
+@warning_ignore("unused_signal")
+signal on_character_post_turn_complete(character: CharacterState)
+
+@warning_ignore("unused_signal")
+signal request_apply_ailment_post_effect(target: CharacterState, post_effect: AilmentPostEffect)
+
+@warning_ignore("unused_signal")
 signal on_hit(user: CharacterState, target: CharacterState, hit: Hit)
 
 @warning_ignore("unused_signal")
